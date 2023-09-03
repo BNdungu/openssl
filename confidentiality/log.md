@@ -110,6 +110,14 @@ openssl aes-256-cbc -in text.enc -out text.dec -d -kfile encryption.key
 
 _-a flag is used to encrypt to base 64_
 
+failure to include the -kflag in the command prompts for a password which in place is used to derive an encryption key.
+
 ```bash
 openssl des-ede3-cbc -in text.txt -out text.enc -e -a
 ```
+
+Decrypt the file using the password
+
+````bash
+openssl des-ede3-cbc -in text.dec -out tetx.enc -d -a```
+````
