@@ -60,4 +60,4 @@ Examine the RSA Private Key
 openssl rsa -in key.pri -noout -text
 ```
 
-### Private keys are used to sign some data or decrypt some data
+<u>Private keys are used to sign some data or decrypt some data</u>
