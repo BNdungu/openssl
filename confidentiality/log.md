@@ -25,3 +25,27 @@ openssl rand -hex -out encryption.key 32
 ```
 
 This command will generate random 32 hex data and store it in a file named encryption.key bt aid of the -out flag.
+
+## Generating Asymtric keys(RSA)
+
+### Private Keys
+
+Create a rsa key using openssl
+
+```bash
+openssl genrsa
+```
+
+Mention the jey size
+
+```bash
+openssl genrsa 1024
+```
+
+Output the key into a file
+
+````bash
+openssl genrsa > key.pri
+```
+
+````
