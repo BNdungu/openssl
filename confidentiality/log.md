@@ -60,4 +60,10 @@ Examine the RSA Private Key
 openssl rsa -in key.pri -noout -text
 ```
 
-_Private keys are used to sign some data or decrypt some data_
+_Private keys are used to sign some data or decrypt some data and so we need public keys to do encryption of data_
+
+Generate a public key corresponding to the private key in hand
+
+```bash
+openssl rsa -in key.pri -pubout -out key.pub
+```
