@@ -36,7 +36,7 @@ Create a rsa key using openssl
 openssl genrsa
 ```
 
-Mention the jey size
+Mention the key size
 
 ```bash
 openssl genrsa 1024
@@ -44,8 +44,20 @@ openssl genrsa 1024
 
 Output the key into a file
 
-````bash
+```bash
 openssl genrsa > key.pri
 ```
 
-````
+Mention the key size as well as save in a file
+
+```bash
+openssl genrsa -out key.pri 2048
+```
+
+Examine the RSA Private Key
+
+```bash
+openssl rsa -in key.pri -noout -text
+```
+
+### Private keys are used to sign some data or decrypt some data
