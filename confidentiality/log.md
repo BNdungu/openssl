@@ -124,6 +124,14 @@ openssl des-ede3-cbc -in text.dec -out tetx.enc -d -a```
 
 ### password based key derivation format [pbkdf2](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwi5q9DF4Y6BAxVf0gIHHWqjBBwQFnoECBUQAw&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FPBKDF2&usg=AOvVaw2yv-GNF51TlFrBvXvvQUxl&opi=89978449)
 
+This command spits out zero errors because pbkdf2 more stiff security while doing the encryption
+
 ````bash
 openssl aes-256-cbc -in text.txt -out text.enc -e -a -kfile secret.key -pbkdf2```
+````
+
+Decrypt text.enc to text.dec
+
+````bash
+openssl aes-256-cbc -in text.enc -out text.dec -d -a -kfile secrets.key -pbkdf2```
 ````
