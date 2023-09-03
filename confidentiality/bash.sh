@@ -1,0 +1,1 @@
+openssl rand -hex -out key 32
