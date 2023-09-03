@@ -21,10 +21,10 @@ openssl rand -hex 32
 The two commands are used to create random data in hex at 16 and 32 bit respectively.
 
 ```bash
-openssl rand -hex -out encryption.key 32
+openssl rand -hex -out secret.key 32
 ```
 
-This command will generate random 32 hex data and store it in a file named encryption.key bt aid of the -out flag.
+This command will generate random 32 hex data and store it in a file named secret.key bt aid of the -out flag.
 
 ## Generating Asymetric keys(RSA)
 
@@ -95,7 +95,7 @@ openssl list -options aes-256-cbc
 ## Encrypt a file using openssl (aes-256-cbc algorithm)
 
 ````bash
-openssl aes-256-cbc -in text.txt -out text.enc -e -kfile encryption.key```
+openssl aes-256-cbc -in text.txt -out text.enc -e -kfile secret.key```
 ````
 
 -kfile flag is used to point to the key to use for encryption.
@@ -103,7 +103,7 @@ openssl aes-256-cbc -in text.txt -out text.enc -e -kfile encryption.key```
 ## Decryption using openssl
 
 ```bash
-openssl aes-256-cbc -in text.enc -out text.dec -d -kfile encryption.key
+openssl aes-256-cbc -in text.enc -out text.dec -d -kfile secret.key
 ```
 
 ### Encrypt a file on -des-ede3-cbc and a key-in password
@@ -135,3 +135,31 @@ Decrypt text.enc to text.dec
 ````bash
 openssl aes-256-cbc -in text.enc -out text.dec -d -a -kfile secrets.key -pbkdf2```
 ````
+
+PBKDF2 applies a hash function multiple times to increase the computational effort required to derive the key. The number of iterations (also called the "work factor") is a parameter that determines the computational cost and security level. More iterations make it harder for attackers to perform brute-force or dictionary attacks.
+By Default, pbkdf2 iterations are numbered to 100,000 but we can enter the number of iterations that we would like to happen in the process by using the ** -iter ** flag.
+
+```bash
+openssl aes-256-cbc -in text.txt -out text.enc -e -a -kfile secret.key -pbkdf2 -iter 1000
+```
+
+The same number of iterations used to encrypt should be used for in the inverse process otherwise the result is an error
+
+```bash
+openssl aes-256-cbc -in text.enc -out text.dec -d -a -kfile secrets.key -pbkdf2 1000
+```
+
+## Asymetric Encryption
+
+Here is how to use the rsa key pair to do encryption and decryption.
+
+```bash
+openssl pkeyutl -encrypt -inkey key.pub -pubin -in text.txt -out text.enc
+```
+
+The [pkeyutl](https://www.openssl.org/docs/man1.1.1/man1/openssl-pkeyutl.html) command can be used to perform low-level public key operations using any supported algorithm.
+It is the recommended replacement for various public key operations, including encryption and decryption, in OpenSSL 3.0 and later versions.
+
+```bash
+openssl pkeyutl -decrypt -inkey key.pri in text.enc -out text.dec
+```
