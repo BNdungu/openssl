@@ -68,7 +68,7 @@ Generate a public key corresponding to the private key in hand
 openssl rsa -in key.pri -pubout -out key.pub
 ```
 
-## Available Encryption algorithms supported by openssl
+## Available algorithms supported by openssl
 
 ```bash
 openssl list -commands
@@ -104,4 +104,12 @@ openssl aes-256-cbc -in text.txt -out text.enc -e -kfile encryption.key```
 
 ```bash
 openssl aes-256-cbc -in text.enc -out text.dec -d -kfile encryption.key
+```
+
+### Encrypt a file on -des-ede3-cbc and a key-in password
+
+_-a flag is used to encrypt to base 64_
+
+```bash
+openssl des-ede3-cbc -in text.txt -out text.enc -e -a
 ```
